@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(public/images/expense\ tracker2.jpg); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            position: relative; /* Ensure the body has a relative position for the overlay */
+            overflow: hidden;
+        }
+
+        /* Dark overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for darkness */
+            z-index: 1; /* Place overlay above the background but below other content */
+        }
+
+        .main-container {
+            max-width: 900px;
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            position: relative; /* Ensure main container is above the overlay */
+            z-index: 2; /* Above overlay */
+        }
+
+        /* Rest of your styles here... */
+    </style>
+</head>
+<body>
+    <div class="overlay"></div> <!-- Dark overlay -->
+    <div class="main-container">
+        <h2 class="text-center mb-4">Expense Tracker</h2>
+
+        <!-- Expense Form on the Left -->
+        <div class="section-container">
+            <form id="expenseForm">
+                <h3>Expense</h3>
+                <div class="mb-3">
+                    <label class="form-label">Expense Type:</label>
+                    <div class="form-inline-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="expenseType" id="food" value="Food">
+                            <label class="form-check-label" for="food">Food</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="expenseType" id="cloth" value="Cloth">
+                            <label class="form-check-label" for="cloth">Cloth</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="expenseType" id="travel" value="Travel">
+                            <label class="form-check-label" for="travel">Travel</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="expenseType" id="expenseOthers" value="Others">
+                            <label class="form-check-label" for="expenseOthers">Others</label>
+                        </div>
+                    </div>
+                    <!-- Input box for 'Others' -->
+                    <input type="text" class="form-control others-input" placeholder="Specify Other Expense" id="expenseOthersInput">
+                </div>
+                <div class="mb-3">
+                    <label for="expenseRange" class="form-label">Amount (500 - 5000):</label>
+                    <input type="range" class="form-range" id="expenseRange" min="500" max="5000" step="100" oninput="expenseAmount.value = expenseRange.value">
+                    <output name="expenseAmount" id="expenseAmount">500</output>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Expense</button>
+            </form>
+        </div>
+
+        <!-- Income Form on the Right -->
+        <div class="section-container">
+            <form id="incomeForm">
+                <h3>Income</h3>
+                <div class="mb-3">
+                    <label class="form-label">Income Type:</label>
+                    <div class="form-inline-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="incomeType" id="trading" value="Trading">
+                            <label class="form-check-label" for="trading">Trading</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="incomeType" id="freelancing" value="Freelancing">
+                            <label class="form-check-label" for="freelancing">Freelancing</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="incomeType" id="business" value="Business">
+                            <label class="form-check-label" for="business">Business</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="incomeType" id="incomeOthers" value="Others">
+                            <label class="form-check-label" for="incomeOthers">Others</label>
+                        </div>
+                    </div>
+                    <!-- Input box for 'Others' -->
+                    <input type="text" class="form-control others-input" placeholder="Specify Other Income" id="incomeOthersInput">
+                </div>
+                <div class="mb-3">
+                    <label for="incomeRange" class="form-label">Amount (500 - 5000):</label>
+                    <input type="range" class="form-range" id="incomeRange" min="500" max="5000" step="100" oninput="incomeAmount.value = incomeRange.value">
+                    <output name="incomeAmount" id="incomeAmount">500</output>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Income</button>
+            </form>
+        </div>
+
+        <!-- Total Balance Section in the Center -->
+        <div class="section-container balance-container">
+            <h3>Total Balance</h3>
+            <p id="totalBalance">0</p>
+        </div>
+
+        <!-- Transactions Button at the Bottom -->
+        <div class="transactions-button text-center">
+            <button class="btn btn-secondary">Show All Transactions</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper (for responsive design and components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
